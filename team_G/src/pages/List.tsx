@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Post from "../components/Post";
 
+interface Post {
+  parm: string;
+  image: File | null;
+}
+
 function List() {
   const [parm, setParm] = useState("");
   const [image, setImage] = useState<File | null>(null);
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   //api 들어갈곳
 
