@@ -7,13 +7,19 @@ services:
       - "8000:8000"
     depends_on:
       - mongodb
+    networks:
+      - mynetwork
   mongodb:
     image: mongo
-    ports:
-      - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    networks:
+      - mynetwork
 
 volumes:
   mongodb_data:
-  
+
+
+networks:
+  mynetwork:
+    driver: bridge

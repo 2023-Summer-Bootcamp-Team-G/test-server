@@ -1,16 +1,23 @@
-// import React from "react";
 import styled from "styled-components";
 
 interface PostProps {
   parm: string;
-  image: File | null;
+  image: File | string | null;
 }
 
 function Post({ parm, image }: PostProps) {
+  let imageSource: string | null;
+
+  if (image instanceof File) {
+    imageSource = URL.createObjectURL(image);
+  } else {
+    imageSource = image;
+  }
+
   return (
     <PostContainer>
       <h3>{parm}</h3>
-      {image && <Image src={URL.createObjectURL(image)} alt={parm} />}
+      {imageSource && <Image src={imageSource} alt={parm} />}
     </PostContainer>
   );
 }

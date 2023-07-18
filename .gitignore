@@ -170,7 +170,7 @@ yarn-error.log
 
 # Output directory
 dist/
-static/
+# static/
 
 # Environment variables
 .env
@@ -225,3 +225,4 @@ out/
 
 # Generated files by create-react-app
 build/
+
