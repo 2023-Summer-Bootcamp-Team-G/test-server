@@ -14,6 +14,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # the application crashes without emitting any logs due to buffering.
 ENV PYTHONUNBUFFERED=1
 
+ARG REGION_NAME=ap-northeast-2
+ENV REGION_NAME=${REGION_NAME}
+
 WORKDIR /app
 
 # Create a non-privileged user that the app will run under.
