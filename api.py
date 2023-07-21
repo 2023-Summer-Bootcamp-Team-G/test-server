@@ -78,7 +78,11 @@ def generate_presigned_url(object_name):
         # Pre-signed URL 생성
         response = s3_client.generate_presigned_url(
             "get_object",
-            Params={"Bucket": bucket_name, "Key": object_name},
+            Params={
+                "Bucket": bucket_name,
+                "Key": object_name,
+                "ResponseContentType": "image/png",
+            },
             ExpiresIn=expires_in,
         )
 

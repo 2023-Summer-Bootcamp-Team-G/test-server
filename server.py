@@ -9,9 +9,9 @@ from datetime import datetime, timedelta
 from enum import Enum
 from pymongo import MongoClient
 from pydantic import BaseModel
-from fastapi import FastAPI, BackgroundTasks, HTTPException, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import FileResponse
+from fastapi import FastAPI, BackgroundTasks, HTTPException, Response
 
 # from fastapi.middleware.cors import CORSMiddleware
 
@@ -129,7 +129,7 @@ async def get_task_result(task_id: str):
 
 def update_task_result(task_id: str, message: str):
     # 비동기 작업 결과 업데이트
-    result, processing_time, error_message, expiration_time = create_image(
+    result, processing_time, expiration_time, error_message = create_image(
         task_id, message
     )
 
@@ -159,7 +159,7 @@ app.mount("/", StaticFiles(directory="static"), name="static")
 # URL 일괄 갱신 작업
 def renew_urls():
     current_time = datetime.utcnow()
-    expiration_threshold = timedelta(minutes=5)  # 만료 임계값 설정 (예: 5분)
+    expiration_threshold = timedelta(hours=2)
 
     expired_urls = collection.find(
         {"expiration_time": {"$lt": current_time + expiration_threshold}}
